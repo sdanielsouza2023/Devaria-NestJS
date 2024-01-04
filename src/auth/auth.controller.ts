@@ -18,6 +18,7 @@ export class AuthController{
 
     @Post('register')
     @HttpCode(HttpStatus.OK)
+    @Ispublic()
     register(@Body() dto: RegisterDto){
         return this.authService.register(dto)
     }
