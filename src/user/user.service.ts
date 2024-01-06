@@ -19,10 +19,10 @@ export class UserService {
         const result = await this.userModel.findOne({ email })
 
         if (result) {
-            return true;
+            return true
         }
 
-        return false;
+        return false
     }
     async getUserByLoginPassword(email: string, password: string): Promise<UserDocument | null> {
         const user = await this.userModel.findOne({ email }) as UserDocument;
@@ -32,11 +32,15 @@ export class UserService {
             const savedPassword = bytes.toString(CryptoJS.enc.Utf8);
 
             if (password == savedPassword) {
-                return user;
+                return user
             }
         }
 
-        return null;
+        return null
+    }
+
+    async getUserById(id:string){
+        return await this.userModel.findById(id)
     }
 
 }

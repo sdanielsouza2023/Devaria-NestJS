@@ -11,23 +11,23 @@ export class JwtAuthGuard extends AuthGuard('jwt'){
 
     canActivate(context: ExecutionContext){
         const isPublic = this.reflector.getAllAndOverride<boolean>(
-            IS_PUBLIC_KEY,[context.getHandler(), context.getClass()]);
+            IS_PUBLIC_KEY,[context.getHandler(), context.getClass()])
 
         if(isPublic){
             return true;
         }
 
-        const canActivate = super.canActivate(context);
+        const canActivate = super.canActivate(context)
 
         if(typeof canActivate === 'boolean'){
             return canActivate;
         }
 
-        const canActivatePromise = canActivate as Promise<boolean>;
+        const canActivatePromise = canActivate as Promise<boolean>
 
         return canActivatePromise.catch(error => {
             if(error && error.message){
-                throw new UnauthorizedException(error.message);
+                throw new UnauthorizedException(error.message)
             }
 
             throw new UnauthorizedException()
