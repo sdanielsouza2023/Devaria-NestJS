@@ -9,7 +9,7 @@ import { JwtStrategy } from "./strategies/jwt.strategy"
     imports:[
          UserModule,
          JwtModule.register({
-        secret:process.env.USER_CYPHER_SECRET_KEY
+        secret:process.env.USER_JWT_SECRET_KEY
     })],
     controllers:[AuthController],
     providers:[AuthService , JwtStrategy]
